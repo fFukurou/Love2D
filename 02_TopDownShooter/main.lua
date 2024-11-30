@@ -12,6 +12,8 @@ function love.load()
     player = {}
     player.x = love.graphics.getWidth() / 2
     player.y = love.graphics.getHeight() / 2
+    
+    player.injured = false
     player.speed = 220
     
     myFont = love.graphics.newFont(30)
@@ -50,11 +52,18 @@ function love.update(dt)
 
         -- Checks for zombie COLLISION with the player
         if distanceBetween(z.x, z.y, player.x, player.y) < 30 then
-            for i,z in ipairs(zombies) do
-                zombies[i] = nil
-                gameState = 1
-                player.x = love.graphics.getWidth()/2
-                player.y = love.graphics.getHeight()/2
+            if player.injured == false then
+                z.dead = true
+                player.injured = true
+                player.speed = player.speed * 1.20
+
+            elseif player.injured == true then
+                for i,z in ipairs(zombies) do
+                    zombies[i] = nil
+                    gameState = 1
+                    player.x = love.graphics.getWidth()/2
+                    player.y = love.graphics.getHeight()/2
+                end
             end
         end
     end
@@ -119,7 +128,12 @@ function love.draw()
 
     love.graphics.printf("Score: " .. score, 0, love.graphics.getHeight()-100, love.graphics.getWidth(), "center")
 
+    if player.injured == true then 
+        love.graphics.setColor(1,0,0)
+    end
     love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, sprites.player:getWidth()/2, sprites.player:getHeight()/2)
+    
+    love.graphics.setColor(1,1,1)
 
     for i,z in ipairs(zombies) do
         love.graphics.draw(sprites.zombie, z.x, z.y, zombiePlayerAngle(z), nil, nil, sprites.zombie:getWidth()/2, sprites.zombie:getHeight()/2)
