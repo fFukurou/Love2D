@@ -34,6 +34,27 @@ end
 
 setMessage(55)
 
+--------- TABLES ----------------
+
+testScores = {}
+testScores.subject = "Science"
+
+
+testScores[1] = 95
+testScores[2] = 87
+testScores[3] = 98
+
+table.insert(testScores, 95)
+table.insert(testScores, 321)
+table.insert(testScores, 555)
+
+testScores["math"] = "Math test"
+
+for i,s in ipairs(testScores) do
+    message = message + s
+end
+
+
 -- 
 function love.draw()
     love.graphics.setFont(love.graphics.newFont(fontSize))
