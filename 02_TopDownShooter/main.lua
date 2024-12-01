@@ -2,6 +2,7 @@
 ---------------- LOAD ------------------
 function love.load()
     math.randomseed(os.time())
+    love.window.setTitle("fFukurou Top-Down-Shooter-Proto")
 
     sprites =  {}
     sprites.background = love.graphics.newImage('sprites/background.png')

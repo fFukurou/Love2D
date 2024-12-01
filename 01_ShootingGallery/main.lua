@@ -1,4 +1,7 @@
 function love.load()
+
+    love.window.setTitle("fFukurou Gallery-Shooter-Proto")
+
     target = {}
     target.x = 300
     target.y = 300
