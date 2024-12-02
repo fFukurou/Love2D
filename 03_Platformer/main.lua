@@ -8,10 +8,10 @@ function love.load()
     love.graphics.line(0, love.graphics.getHeight(), love.graphics.getWidth(), love.graphics.getHeight())
     love.graphics.setColor(1, 1, 1) -- Reset color
 
-    anim8 = require 'libraries/anim8/anim8'
-    wf = require './libraries/windfield/windfield'
-    sti = require 'libraries/Simple-Tiled-Implementation/sti'
-    cameraFile = require 'libraries/hump/camera'
+    anim8 = require 'libraries/anim8-master/anim8'
+    wf = require './libraries/windfield-master/windfield'
+    sti = require 'libraries/Simple-Tiled-Implementation-master/sti'
+    cameraFile = require 'libraries/hump-master/camera'
 
     cam = cameraFile()
 
