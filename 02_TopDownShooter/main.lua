@@ -64,6 +64,7 @@ function love.update(dt)
                     gameState = 1
                     player.x = love.graphics.getWidth()/2
                     player.y = love.graphics.getHeight()/2
+                    player.injured = false
                 end
             end
         end
@@ -131,10 +132,12 @@ function love.draw()
 
     if player.injured == true then 
         love.graphics.setColor(1,0,0)
+        love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, sprites.player:getWidth()/2, sprites.player:getHeight()/2)
+        love.graphics.setColor(1,1,1)
+    else
+        love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, sprites.player:getWidth()/2, sprites.player:getHeight()/2)
     end
-    love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, sprites.player:getWidth()/2, sprites.player:getHeight()/2)
     
-    love.graphics.setColor(1,1,1)
 
     for i,z in ipairs(zombies) do
         love.graphics.draw(sprites.zombie, z.x, z.y, zombiePlayerAngle(z), nil, nil, sprites.zombie:getWidth()/2, sprites.zombie:getHeight()/2)
@@ -148,11 +151,11 @@ end
 ---------------- FUNCTIONS ------------------
 
 
-function love.keypressed( key )
-    if key == "space" then
-        spawnZombie()
-    end
-end
+-- function love.keypressed( key )
+--     if key == "space" then
+--         spawnZombie()
+--     end
+-- end
 
 function love.mousepressed( x, y, button )
     if button == 1 and gameState == 2 then
